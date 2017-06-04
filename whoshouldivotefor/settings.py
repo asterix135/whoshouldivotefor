@@ -25,7 +25,11 @@ SECRET_KEY = 'w43ek8yj8fpn*#mydrdr6%%!*oq&wrn0nl0*ah$cx!v%%cp6ta'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    'glacial-sands-83405.herokuapp.com'
+]
 
 
 # Application definition
