@@ -1,0 +1,8 @@
+{
+  "name": "WhoShouldIVoteFor.ca",
+  "description": "A website that helps Canadian navigate elections.",
+  "image": "heroku/python",
+  "repository": "https://github.com/asterix135/whoshouldivotefor",
+  "keywords": ["python", "django", "elections" ],
+  "addons": [ "heroku-postgresql" ]
+}
