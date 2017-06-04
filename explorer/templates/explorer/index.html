@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{% extends 'explorer/base.html' %}
 {% load staticfiles %}
 
 <html lang="en">
@@ -6,8 +6,8 @@
   <link href="{% static 'explorer/style.css' %}" rel="stylesheet" type="text/css">
 </head>
 
-<body>
-  <h2>This is the homepage for whoshouldivotefor.ca</h2>
-</body>
+{% block content %}
 
-</html>
+<h2>This is the homepage for whoshouldivotefor.ca</h2>
+
+{% endblock %}
