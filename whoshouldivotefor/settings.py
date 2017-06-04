@@ -23,7 +23,7 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'w43ek8yj8fpn*#mydrdr6%%!*oq&wrn0nl0*ah$cx!v%%cp6ta'
+SECRET_KEY = os.environ.get('APP_SECRET')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -86,9 +86,9 @@ WSGI_APPLICATION = 'whoshouldivotefor.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'vote',
-        'USER': 'voteapp',
-        'PASSWORD': 'VotePassword',
+        'NAME': os.environ.get('WSSIVF_DBNAME'),
+        'USER': os.environ.get('WSSIVF_USER'),
+        'PASSWORD': os.environ.get('WSSIVF_PASSWORD'),
         'HOST': 'localhost',
         'PORT': '',
     }
