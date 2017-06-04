@@ -28,7 +28,9 @@ DEBUG = True
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
-    'glacial-sands-83405.herokuapp.com'
+    'glacial-sands-83405.herokuapp.com',
+    'www.whoshouldivotefor.ca',
+    'whoshouldivotefor.ca',
 ]
 
 
