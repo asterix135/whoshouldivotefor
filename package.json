@@ -1,0 +1,23 @@
+{
+  "name": "whoshouldivotefor",
+  "version": "0.0.0",
+  "description": "js package for whoshouldivotefor.ca",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/asterix135/whoshouldivotefor.git"
+  },
+  "keywords": [
+    "canada",
+    "elections"
+  ],
+  "author": "Christopher Graham",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/asterix135/whoshouldivotefor/issues"
+  },
+  "homepage": "https://github.com/asterix135/whoshouldivotefor#readme"
+}
