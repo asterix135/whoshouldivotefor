@@ -20,6 +20,6 @@ class Polity(models.Model):
     num_wards = models.IntegerField(null=True, blank=True)
     separate_executive = models.BooleanField(default=True)  # usually refers to mayor
     notes = models.TextField(null=True, blank=True)
-    creator = models.ForeignKey('auth.User', related_name='polity',
+    creator = models.ForeignKey('auth.User', related_name='polities',
                                 on_delete=models.SET_NULL,
                                 blank=True, null=True)
