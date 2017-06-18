@@ -1,5 +1,7 @@
 {% extends 'explorer/base.html' %}
 {% load staticfiles %}
+{% load render_bundle from webpack_loader %}
+
 
 <html lang="en">
 <head>
@@ -11,5 +13,8 @@
 <h2>This is the homepage for whoshouldivotefor.ca</h2>
 
 <h3>{{ greeting }}</h3>
+
+<div id="container"></div>
+    {% render_bundle 'main' %}
 
 {% endblock %}
