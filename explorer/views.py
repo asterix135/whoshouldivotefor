@@ -20,6 +20,10 @@ class Index(TemplateView):
         context['greeting'] = 'Hello! ' * 2
         return context
 
+
+class Playground(TemplateView):
+    template_name = 'explorer/playground.html'
+
 #
 # class PolityList(generics.ListCreateAPIView):
 #     queryset = Polity.objects.all()

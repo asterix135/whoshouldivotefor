@@ -6,6 +6,7 @@ from explorer import views
 
 urlpatterns = [
     url(r'^$', views.Index.as_view(), name='index'),
+    url(r'^playground/$', views.Playground.as_view(), name='playground'),
 
     # url(r'^api/$', views.api_root),
     # url(r'^polity/$', views.PolityList.as_view(), name="polity-list"),

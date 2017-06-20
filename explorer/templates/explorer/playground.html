@@ -1,0 +1,12 @@
+{% extends 'explorer/base.html' %}
+{% load staticfiles %}
+{% load render_bundle from webpack_loader %}
+
+{% block content %}
+
+<h2>React playground page</h2>
+
+<div id="container"></div>
+    {% render_bundle 'main' %}
+
+{% endblock %}
