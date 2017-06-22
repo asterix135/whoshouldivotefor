@@ -2,7 +2,6 @@ from django.db import models
 
 from .constants import *
 
-
 class Polity(models.Model):
     """
     contains information on political entities

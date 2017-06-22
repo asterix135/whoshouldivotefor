@@ -2,8 +2,17 @@
 {% load staticfiles %}
 <html lang="en">
 <head>
-  <title>WhoShouldIVoteFor.ca</title>
+  <title>{% block title %}{% endblock %}WhoShouldIVoteFor.ca</title>
+
+  <link rel="apple-touch-icon" href="{% static 'explorer/images/touch-icons/touch-icon-iphone-60x60.png' %)">
+  <link rel="apple-touch-icon" sizes="60x60" href="{% static 'explorer/images/touch-icons/touch-icon-ipad-76x76.png' %}">
+  <link rel="apple-touch-icon" sizes="114x114" href="{% static 'explorer/images/touch-icons/touch-icon-iphone-retina-120x120.png' %}">
+  <link rel="apple-touch-icon" sizes="144x144" href="{% static 'explorer/images/touch-icons/touch-icon-ipad-retina-152x152.png' %}">
+
   <meta charset="utf-8" />
+  <meta name="description" content="Canadian Municipal Vote Suggestion Website" />
+  <meta name="author" content="Christopher Graham" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
   <link rel="stylesheet" href="{% static 'explorer/bootstrap/css/bootstrap.min.css' %}" />
@@ -13,8 +22,56 @@
   <script src="{% static 'explorer/js/tether.min.js' %}"></script>
   <script src="{% static 'explorer/bootstrap/js/bootstrap.min.js' %}"></script>
 
+  {% block scriptincludes %}{% endblock %}
 </head>
+
 <body>
+  <nav class="navbar navbar-toggleable-md sticky-top navbar-inverse bg-inverse">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="#">Navbar</a>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li clsss="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">Disabled</a>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+  </nav>
+
   {% block content %}{% endblock %}
+
+  <footer class="bd-footer text-muted">
+    <div class="container">
+      <ul class="bd-footer-links">
+        <li>
+          <a href="https://twitter.com/whoshouldvote4">Twitter</a>
+        </li>
+        <li>
+          <a href="">Privacy Policy</a>
+        </li>
+        <li>
+          <a href="">About</a>
+        </li>
+
+      </ul>
+      <p>
+        ©2017 Christopher Graham
+      </p>
+    </div>
+  </footer>
+
 </body>
 </html>
