@@ -12,6 +12,8 @@ from .models import *
 # from .permissions import IsOwnerOrReadOnly
 # from .serializers import *
 
+# API Call:  http://127.0.0.1:8000/api/polities/1.json
+
 class Index(TemplateView):
     template_name = 'explorer/index.html'
 
@@ -23,36 +25,3 @@ class Index(TemplateView):
 
 class Playground(TemplateView):
     template_name = 'explorer/playground.html'
-
-#
-# class PolityList(generics.ListCreateAPIView):
-#     queryset = Polity.objects.all()
-#     serializer_class = PolitySerializer
-#     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-#
-#     def perform_create(self, serializer):
-#         serializer.save(owner=self.request.user)
-#
-#
-# class PolityDetail(generics.RetrieveUpdateDestroyAPIView):
-#     queryset = Polity.objects.all()
-#     serializer_class = PolitySerializer
-#     permission_classes = (permissions.IsAuthenticatedOrReadOnly,
-#                           IsOwnerOrReadOnly)
-#
-#
-# class UserList(generics.ListAPIView):
-#     queryset = User.objects.all()
-#     serializer_class = UserSerializer
-#
-# class UserDetail(generics.RetrieveAPIView):
-#     queryset = User.objects.all()
-#     serializer_class = UserSerializer
-#
-#
-# @api_view(['GET'])
-# def api_root(request, format=None):
-#     return Response({
-#         'users': reverse('user-list', request=request, format=format),
-#         'polities': reverse('polity-list', request=request, format=format)
-#     })

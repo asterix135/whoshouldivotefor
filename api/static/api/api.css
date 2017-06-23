@@ -1,0 +1,5 @@
+/* Tweaks to deal with Bootstrap 4 vs 3 */
+
+.pull-right {
+  float: right !important;
+}

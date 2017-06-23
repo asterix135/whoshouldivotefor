@@ -9,6 +9,9 @@ from .permissions import IsOwnerOrReadOnly
 from .serializers import *
 
 
+# API Call:  http://127.0.0.1:8000/api/polities/1.json
+
+
 class PolityViewSet(viewsets.ModelViewSet):
     """
     This viewset automatically provides 'list', 'create', 'retrieve',
@@ -24,18 +27,18 @@ class PolityViewSet(viewsets.ModelViewSet):
 
 
 
-class UserViewSet(viewsets.ReadOnlyModelViewSet):
-    """
-    This viewset automatically provides 'list' and 'detail' views
-    """
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
+# class UserViewSet(viewsets.ReadOnlyModelViewSet):
+#     """
+#     This viewset automatically provides 'list' and 'detail' views
+#     """
+#     queryset = User.objects.all()
+#     serializer_class = UserSerializer
 
 
 @api_view(['GET'])
 def api_root(request, format=None):
     return Response({
-        'users': reverse('user-list', request=request, format=format),
+        # 'users': reverse('user-list', request=request, format=format),
         'polities': reverse('polity-list', request=request, format=format)
     })
 

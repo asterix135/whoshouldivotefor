@@ -12,7 +12,7 @@ schema_view = get_schema_view(title='Pastebin API')
 # create a router and register our viewsets with it
 router = DefaultRouter()
 router.register(r'polities', views.PolityViewSet)
-router.register(r'users', views.UserViewSet)
+# router.register(r'users', views.UserViewSet)
 
 
 # The API URLs are now determined automatically by the router
