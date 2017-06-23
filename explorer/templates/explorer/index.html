@@ -2,10 +2,9 @@
 {% load staticfiles %}
 {% load render_bundle from webpack_loader %}
 
-<html lang="en">
-<head>
-  <link href="{% static 'explorer/style.css' %}" rel="stylesheet" type="text/css">
-</head>
+{% block scriptincludes %}
+  <link href="{% static 'explorer/css/index.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
 
 {% block content %}
 
