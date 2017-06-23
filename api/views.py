@@ -37,6 +37,9 @@ class PolityViewSet(viewsets.ModelViewSet):
 
 @api_view(['GET'])
 def api_root(request, format=None):
+    """
+    Directions
+    """
     return Response({
         # 'users': reverse('user-list', request=request, format=format),
         'polities': reverse('polity-list', request=request, format=format)

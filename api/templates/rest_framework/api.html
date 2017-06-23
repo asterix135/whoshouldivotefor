@@ -7,6 +7,10 @@
 <link rel="stylesheet" type="text/css" href="{% static 'api/api.css' %}" />
 {% endblock %}
 
+ {% block title %}
+ {% if name %}{{ name }} | {% endif %}WhoShouldIVoteFor.ca
+ {% endblock %}
+
 {% block navbar %}
 <nav class="navbar navbar-toggleable-md sticky-top navbar-inverse bg-inverse">
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
