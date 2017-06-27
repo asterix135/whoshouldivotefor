@@ -5,17 +5,33 @@ from rest_framework.schemas import get_schema_view
 
 from api import views
 
+# override docstring for API Root
+class Router(DefaultRouter):
+    def get_api_root_view(self, api_urls=None):
+        root_view = super(Router, self).get_api_root_view(api_urls=api_urls)
+        root_view.cls.__doc__ = "API Root View\n" + \
+                                "Provides Entry Point information for " + \
+                                "other API calls"
+        return root_view
+
 # Schema import
 
 schema_view = get_schema_view(title='Pastebin API')
 
 # create a router and register our viewsets with it
-router = DefaultRouter()
+router = Router()
 router.register(r'polities', views.PolityViewSet)
-# router.register(r'users', views.UserViewSet)
+router.register(r'districts', views.DistrictViewSet)
+router.register(r'elections', views.ElectionViewSet)
+router.register(r'candidates', views.CandidateViewSet)
+router.register(r'election_candidates', views.ElectionCandidateViewSet)
+router.register(r'issue_categories', views.IssueCategoryViewSet)
+router.register(r'polls', views.PollViewSet)
+router.register(r'questions', views.QuestionViewSet)
+router.register(r'candidate_positions', views.CandidatePositionViewSet)
+router.register(r'public_answers', views.PublicAnswerViewSet)
 
-
-# The API URLs are now determined automatically by the router
+# The API URLs are determined automatically by the router
 # Additionally, include the login URLs for browsable API
 
 urlpatterns = [

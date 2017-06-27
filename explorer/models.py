@@ -19,9 +19,9 @@ class Polity(models.Model):
     num_wards = models.IntegerField(null=True, blank=True)
     separate_executive = models.BooleanField(default=True)  # usually refers to mayor
     notes = models.TextField(null=True, blank=True)
-    creator = models.ForeignKey('auth.User', related_name='polities',
-                                on_delete=models.SET_NULL,
-                                blank=True, null=True)
+
+    def __str__(self):
+        return str({'pk': self.pk, 'name': self.name})
 
 
 class Election(models.Model):
@@ -31,7 +31,7 @@ class Election(models.Model):
     polity = models.ForeignKey(Polity,
                                on_delete=models.CASCADE)
     vote_date = models.DateField()
-    start_date = models.DateField(null=True, blank=True)
+    campaign_start_date = models.DateField(null=True, blank=True)
 
 
 class District(models.Model):
@@ -39,15 +39,17 @@ class District(models.Model):
     Information on ridings/wards/districts
     """
     polity = models.ForeignKey(Polity,
+                               related_name='districts',
                                on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
     number = models.CharField(max_length=25,
                               null=True, blank=True)
     num_reps = models.IntegerField(default=1,)
     is_whole_polity = models.BooleanField(default=False,)
+    shapefile_link = models.URLField(null=True, blank=True)
 
 
-class Politician(models.Model):
+class Candidate(models.Model):
     """
     Information on individuals running for office
     """
@@ -58,42 +60,72 @@ class Politician(models.Model):
     email = models.EmailField(blank=True, null=True)
     phone = models.CharField(max_length=30, blank=True, null=True)
 
+    def __str__(self):
+        return self.first_name + ' ' + self.last_name
 
-class Candidate(models.Model):
+
+class ElectionCandidate(models.Model):
     """
-    Information on Candidates
+    Information on Candidates particular to a specific election
     """
-    politician = models.ForeignKey(Politician,
-                                   on_delete=models.CASCADE)
+    candidate = models.ForeignKey(Candidate,
+                                   on_delete=models.CASCADE,
+                                   related_name='candidate_in')
     election = models.ForeignKey(Election,
-                                 on_delete=models.CASCADE)
+                                 on_delete=models.CASCADE,
+                                 related_name='candidate_details')
     district = models.ForeignKey(District,
                                  on_delete=models.CASCADE)
     incumbent = models.BooleanField(default=False)
 
     class Meta:
-        unique_together = ('politician', 'election', 'district')
+        unique_together = ('candidate', 'election', 'district')
 
 
 class Poll(models.Model):
-    election = models.OneToOneField(Election)
+    """
+    Selection of questions for a particular election
+    """
+    election = models.ForeignKey(Election,
+                                 on_delete=models.CASCADE,
+                                 related_name='polls')
     name = models.CharField(max_length=100, default='default')
 
 
+class IssueCategory(models.Model):
+    """
+    Provides broader categories for poll questions
+    """
+    category = models.CharField(max_length=100,
+                                unique=True)
+
 class Question(models.Model):
-    poll = models.ManyToManyField(Poll)
+    """
+    Questions are designed to be of the form (agree/disagree) on a scale
+    So, no answer choices are created
+    """
+    poll = models.ForeignKey(Poll,
+                             on_delete=models.CASCADE,
+                             related_name='questions')
+    category = models.ManyToManyField(IssueCategory,
+                                      related_name='category_questions')
     question = models.TextField()
 
 
 class Answer(models.Model):
-    question = models.ForeignKey(Question)
+    question = models.ForeignKey(Question,
+                                 on_delete=models.CASCADE,
+                                 related_name='answers')
     agreement = models.IntegerField(default=5)
     importance = models.IntegerField(default=5)
 
 
 class CandidatePosition(Answer):
-    candidate = models.ForeignKey(Candidate)
+    candidate = models.ForeignKey(ElectionCandidate,
+                                  on_delete=models.CASCADE,
+                                  related_name='positions')
 
 
 class PublicAnswer(Answer):
     ip_address = models.GenericIPAddressField()
+    session_id = models.CharField(max_length=255)

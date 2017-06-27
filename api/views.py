@@ -12,148 +12,102 @@ from .serializers import *
 # API Call:  http://127.0.0.1:8000/api/polities/1.json
 
 
+class DistrictViewSet(viewsets.ModelViewSet):
+    """
+    Information on electoral districts for a specific Polity
+    """
+    queryset = District.objects.all()
+    serializer_class = DistrictSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+
 class PolityViewSet(viewsets.ModelViewSet):
     """
-    This viewset automatically provides 'list', 'create', 'retrieve',
-    'update' and 'destroy' actions
+    Information on Governments with elected representatives in Canada
     """
     queryset = Polity.objects.all()
     serializer_class = PolitySerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,
-                          IsOwnerOrReadOnly)
-
-    def perform_create(self, serializer):
-        serializer.save(owner=self.request.user)
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 
+class ElectionViewSet(viewsets.ModelViewSet):
+    """
+    Information on specific Elections
+    """
+    queryset = Election.objects.all()
+    serializer_class = ElectionSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
-# class UserViewSet(viewsets.ReadOnlyModelViewSet):
-#     """
-#     This viewset automatically provides 'list' and 'detail' views
-#     """
-#     queryset = User.objects.all()
-#     serializer_class = UserSerializer
+
+class ElectionCandidateViewSet(viewsets.ModelViewSet):
+    """
+    Information about who is runnining in a particular election & district
+    """
+    queryset = ElectionCandidate.objects.all()
+    serializer_class = ElectionCandidateSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+
+class CandidateViewSet(viewsets.ModelViewSet):
+    """
+    General contact information on people running for office
+    """
+    queryset = Candidate.objects.all()
+    serializer_class = CandidateSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+
+class IssueCategoryViewSet(viewsets.ModelViewSet):
+    """
+    Categories for Poll Questions
+    """
+    queryset = IssueCategory.objects.all()
+    serializer_class = IssueCategorySerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+
+class PollViewSet(viewsets.ModelViewSet):
+    """
+    Details on Polls associated with various elections
+    """
+    queryset = Poll.objects.all()
+    serializer_class = PollSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+
+class QuestionViewSet(viewsets.ModelViewSet):
+    """
+    Details on questions asked in various election polls
+    """
+    queryset = Question.objects.all()
+    serializer_class = QuestionSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly, )
+
+
+class CandidatePositionViewSet(viewsets.ModelViewSet):
+    """
+    Details on positions taken by various political candidates
+    """
+    queryset = CandidatePosition.objects.all()
+    serializer_class = CandidatePositionSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+
+class PublicAnswerViewSet(viewsets.ModelViewSet):
+    """
+    Public Answers to various Poll Questions
+    """
+    queryset = PublicAnswer.objects.all()
+    serializer_class = PublicAnswerSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 
 @api_view(['GET'])
 def api_root(request, format=None):
     """
-    Directions
+    Directions on how to access API views
     """
     return Response({
         # 'users': reverse('user-list', request=request, format=format),
         'polities': reverse('polity-list', request=request, format=format)
     })
-
-
-#
-# class PolityList(generics.ListCreateAPIView):
-#     queryset = Polity.objects.all()
-#     serializer_class = PolitySerializer
-#     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-#
-#     def perform_create(self, serializer):
-#         serializer.save(owner=self.request.user)
-#
-#
-# class PolityDetail(generics.RetrieveUpdateDestroyAPIView):
-#     queryset = Polity.objects.all()
-#     serializer_class = PolitySerializer
-#     permission_classes = (permissions.IsAuthenticatedOrReadOnly,
-#                           IsOwnerOrReadOnly)
-
-
-# class UserList(generics.ListAPIView):
-#     queryset = User.objects.all()
-#     serializer_class = UserSerializer
-#
-#
-# class UserDetail(generics.RetrieveAPIView):
-#     queryset = User.objects.all()
-#     serializer_class = UserSerializer
-
-
-# class PolityList(APIView):
-#     """
-#     List all polities or create a new polity
-#     """
-#     def get(self, request, format=None):
-#         polities = Polity.objects.all()
-#         serializer = PolitySerializer(polities, many=True)
-#         return Response(serializer.data)
-#
-#     def post(self, request, format=None):
-#         serializer = PolitySerializer(data=request.data)
-#         if serializer.is_valid():
-#             serializer.save()
-#             return Response(serializer.data, status=status.HTTP_201_CREATED)
-#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-#
-#
-# class PolityDetail(APIView):
-#     """
-#     Retrieve, update or remove a polity
-#     """
-#     def get_object(self, pk):
-#         try:
-#             return Polity.objects.get(pk=pk)
-#         except Polity.DoesNotExist:
-#             raise Http404
-#
-#     def get(self, request, pk, format=None):
-#         polity = self.get_object(pk)
-#         serializer = PolitySerializer(polity)
-#         return Response(serializer.data)
-#
-#     def put(self, request, pk, fomat=None):
-#         polity = self.get_object(pk)
-#         serializer = PolitySerializer(snippet, data=request.data)
-#         if serializer.is_valid():
-#             serializer.save()
-#             return Response(serializer.data)
-#         return Response(serializer.errors, status=status.HTTP_204_NO_CONTENT)
-#
-#     def delete(self, request, pk, format=None):
-#         snippet = self.get_object.pk
-#         snippet.delete()
-#         return Response(statsu-status.HTTP_204_NO_CONTENT)
-
-
-# @api_view(['GET', 'POST'])
-# def polity_list(request, format=None):
-#     """
-#     Test code to work see Django REST implementation
-#     """
-#     if request.method == 'GET':
-#         polity = Polity.objects.all()
-#         serializer = PolitySerializer(polity, many=True)
-#         return Response(serializer.data)
-#     elif request.method == 'POST':
-#         serializer = PolitySerializer(data=request.data)
-#         if serializer.is_valid():
-#             serializer.save()
-#             return Response(serializer.data, status=status.HTTP_201_CREATED)
-#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-#
-# @api_view(['GET', 'PUT', 'DELETE'])
-# def polity_detail(request, pk, format=None):
-#     """
-#     Test code for Django REST implementation
-#     """
-#     try:
-#         polity = Polity.objects.get(pk=pk)
-#     except Polity.DoesNotExist:
-#         return Response(status=status.HTTP_404_NOT_FOUND)
-#
-#     if request.method == 'GET':
-#         serializer = PolitySerializer(polity)
-#         return Response(polity.data)
-#     elif request.method == 'PUT':
-#         serializer = PolitySerializer(polity, data=request.data)
-#         if serializer.is_valid():
-#             serializer.save()
-#             return Response(serializer.data)
-#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-#     elif request.method == 'DELETE':
-#         polity.delete()
-#         return Response(status=status.HTTP_204_NO_CONTENT)
