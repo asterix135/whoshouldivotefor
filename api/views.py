@@ -20,6 +20,8 @@ class DistrictViewSet(viewsets.ModelViewSet):
     serializer_class = DistrictSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
+    class Meta:
+        ordering = ['id',]
 
 class PolityViewSet(viewsets.ModelViewSet):
     """
@@ -28,6 +30,9 @@ class PolityViewSet(viewsets.ModelViewSet):
     queryset = Polity.objects.all()
     serializer_class = PolitySerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+    class Meta:
+        ordering = ['id',]
 
 
 class ElectionViewSet(viewsets.ModelViewSet):
@@ -38,6 +43,8 @@ class ElectionViewSet(viewsets.ModelViewSet):
     serializer_class = ElectionSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
+    class Meta:
+        ordering = ['id',]
 
 class ElectionCandidateViewSet(viewsets.ModelViewSet):
     """
@@ -47,6 +54,8 @@ class ElectionCandidateViewSet(viewsets.ModelViewSet):
     serializer_class = ElectionCandidateSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
+    class Meta:
+        ordering = ['id',]
 
 class CandidateViewSet(viewsets.ModelViewSet):
     """
@@ -56,6 +65,8 @@ class CandidateViewSet(viewsets.ModelViewSet):
     serializer_class = CandidateSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
+    class Meta:
+        ordering = ['id',]
 
 class IssueCategoryViewSet(viewsets.ModelViewSet):
     """
@@ -65,6 +76,8 @@ class IssueCategoryViewSet(viewsets.ModelViewSet):
     serializer_class = IssueCategorySerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
+    class Meta:
+        ordering = ['id',]
 
 class PollViewSet(viewsets.ModelViewSet):
     """
@@ -74,6 +87,8 @@ class PollViewSet(viewsets.ModelViewSet):
     serializer_class = PollSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
+    class Meta:
+        ordering = ['id',]
 
 class QuestionViewSet(viewsets.ModelViewSet):
     """
@@ -83,6 +98,8 @@ class QuestionViewSet(viewsets.ModelViewSet):
     serializer_class = QuestionSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly, )
 
+    class Meta:
+        ordering = ['id',]
 
 class CandidatePositionViewSet(viewsets.ModelViewSet):
     """
@@ -92,6 +109,8 @@ class CandidatePositionViewSet(viewsets.ModelViewSet):
     serializer_class = CandidatePositionSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
+    class Meta:
+        ordering = ['id',]
 
 class PublicAnswerViewSet(viewsets.ModelViewSet):
     """
@@ -101,6 +120,8 @@ class PublicAnswerViewSet(viewsets.ModelViewSet):
     serializer_class = PublicAnswerSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
+    class Meta:
+        ordering = ['id',]
 
 @api_view(['GET'])
 def api_root(request, format=None):
