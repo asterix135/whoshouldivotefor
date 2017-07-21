@@ -25,3 +25,7 @@ class Index(TemplateView):
 
 class Playground(TemplateView):
     template_name = 'explorer/playground.html'
+
+
+class Playground2(TemplateView):
+    template_name = 'explorer/playground2.html'

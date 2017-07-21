@@ -1,15 +1,17 @@
 ============================
 ======== Main Site =========
 ============================
-1) About page
-2) Privacy page
+- About page
+- Privacy page
+- Map interactivity tied to drop down Selection
+- 
 
 
 ============================
 =========== API ============
 ============================
-1) API description
-2) Field descriptions
+- API description
+- Field descriptions
 
 
 ============================

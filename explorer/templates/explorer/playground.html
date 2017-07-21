@@ -2,11 +2,15 @@
 {% load staticfiles %}
 {% load render_bundle from webpack_loader %}
 
+{% block scriptincludes %}
+  <link href="{% static 'explorer/css/playground.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
 {% block content %}
 
 <div class="jumbotron">
   <div id='welcome'></div>
-  <div id="container"></div>
+  <div id="tutorial"></div>
       {% render_bundle 'main' %}
 </div>
 

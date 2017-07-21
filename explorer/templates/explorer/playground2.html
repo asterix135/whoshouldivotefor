@@ -1,0 +1,29 @@
+<!-- Non-react implementation -->
+{% extends 'explorer/base.html' %}
+{% load staticfiles %}
+
+{% block scriptincludes %}
+  <link href="{% static 'explorer/css/playground.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block content %}
+<div class="jumbotron">
+  <div id='welcome'>
+    <h2>
+      Who Deserves Your Vote?
+    </h2>
+    <h4>
+      Making sense of local elections
+    </h4>
+    <p>
+      We're here to help Canadians make better sense of local elections.
+    </p>
+    <p>
+      Figure out where you stand on important local issues and identify the candidate
+      or candidates who most closely align with your beliefs.
+    </p>
+  </div>
+  <div id="tutorial"></div>
+</div>
+
+{% endblock %}
